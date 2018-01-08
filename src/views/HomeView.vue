@@ -4,17 +4,18 @@
     <button @click="updateInfo">update info</button>
     <router-link to="/about">Go to About Page</router-link>
     <user-list></user-list>
+    <oh-icon :type="require('../icons/github.svg')"></oh-icon>
   </div>
 </template>
 
 <script>
-import Users from '../components/Users.vue';
+import UsersView from './UsersView.vue';
 
 export default {
   name: 'home-view',
   title: 'home page',
   components: {
-    'user-list': Users,
+    'user-list': UsersView,
   },
 
   asyncData({ store }) {

@@ -3,8 +3,8 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-const HomeView = () => import('../pages/HomeView');
-const AboutView = () => import('../pages/AboutView');
+const HomeView = () => import('../views/HomeView');
+const AboutView = () => import('../views/AboutView');
 
 export function createRouter() {
   return new Router({

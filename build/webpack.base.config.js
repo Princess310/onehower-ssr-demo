@@ -4,6 +4,10 @@ const vueConfig = require('./vue-loader.config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
+const svgDirs = [
+  path.resolve(__dirname, '../src/icons'),  // 2. 自己私人的 svg 存放目录
+];
+
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -53,7 +57,18 @@ module.exports = {
         options: {
           limit: 10000,
           name: '[name].[ext]?[hash]'
-        }
+        },
+        exclude: svgDirs,
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'file-loader',
+        exclude: svgDirs,
+      },
+      {
+        test: /\.(svg)$/i,
+        loader: 'svg-sprite-loader',
+        include: svgDirs,  // 把 svgDirs 路径下的所有 svg 文件交给 svg-sprite-loader 插件处理
       },
       {
         test: /\.css$/,

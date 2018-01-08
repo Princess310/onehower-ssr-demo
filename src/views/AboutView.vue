@@ -1,6 +1,8 @@
 <template>
   <div class="about">
-    about page
+    <header>about page</header>
+    <div>{{1000 | parseDistance('chengdu')}}</div>
+    <div>{{null | parseDistance('chengdu')}}</div>
   </div>
 </template>
 
