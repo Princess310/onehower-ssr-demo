@@ -13,7 +13,7 @@ export default {
     type: Object,
     size: {
       type: String,
-      default: '40px',
+      default: '24px',
     },
     color: {
       type: String,

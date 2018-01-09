@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icon.vue should match a snapshot 1`] = `
+<div>
+    <svg width="24px" height="24px" color="#cccccc">
+        <use xlink:href="#test"></use>
+    </svg>
+</div>
+`;
