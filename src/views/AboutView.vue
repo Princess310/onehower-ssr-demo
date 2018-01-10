@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <header>about page</header>
+    <h4>{{ $t("route.about") }}</h4>
     <div>{{1000 | parseDistance('chengdu')}}</div>
     <div>{{null | parseDistance('chengdu')}}</div>
   </div>

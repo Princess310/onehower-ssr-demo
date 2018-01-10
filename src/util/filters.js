@@ -1,5 +1,4 @@
 export function parseDistance(distance, city) {
-  console.log('distance', distance, city);
   let result = city;
 
   if (distance) {

@@ -9,10 +9,11 @@ import user from './modules/user';
 
 Vue.use(Vuex);
 
-export function createStore() {
+export function createStore(info) {
   return new Vuex.Store({
     state: {
       username: 'prince',
+      language: info.language || 'zh',
     },
     actions,
     mutations,

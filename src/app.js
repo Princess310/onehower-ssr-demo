@@ -6,6 +6,7 @@ import 'sanitize.css/sanitize.css';
 import App from './App.vue';
 import { createStore } from './store';
 import { createRouter } from './router';
+import { createLanguage } from './lang';
 import titleMixin from './util/title';
 import * as filters from './util/filters';
 import { install } from './components/index';
@@ -21,10 +22,15 @@ Object.keys(filters).forEach((key) => {
 // register components
 install(Vue);
 
-export function createApp() {
+export function createApp(info) {
   // create store and router instances
-  const store = createStore();
+  const store = createStore({
+    language: info.language,
+  });
   const router = createRouter();
+  const i18n = createLanguage({
+    language: info.language,
+  });
 
   // sync the router with the vuex store.
   // this registers `store.state.route`
@@ -36,6 +42,7 @@ export function createApp() {
   const app = new Vue({
     router,
     store,
+    i18n,
     render: h => h(App),
   });
   return { app, router, store };

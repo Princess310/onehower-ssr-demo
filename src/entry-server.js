@@ -10,9 +10,11 @@ const isDev = process.env.NODE_ENV !== 'production';
 export default context => (
   new Promise((resolve, reject) => {
     const s = isDev && Date.now();
-    const { app, router, store } = createApp();
+    const { url, cookies } = context;
 
-    const { url } = context;
+    const { app, router, store } = createApp({
+      language: cookies.language,
+    });
     const { fullPath } = router.resolve(url).route;
 
     if (fullPath !== url) {
@@ -40,6 +42,7 @@ export default context => (
         if (isDev) {
           console.log(`data pre-fetch: ${Date.now() - s}ms`);
         }
+
         // After all preFetch hooks are resolved, our store is now
         // filled with the state needed to render the app.
         // Expose the state on the render context, and let the request handler

@@ -4,6 +4,7 @@ const LRU = require('lru-cache')
 const express = require('express')
 const compression = require('compression')
 const microcache = require('route-cache')
+const cookieParser = require('cookie-parser')
 const resolve = file => path.resolve(__dirname, file)
 
 const { createBundleRenderer } = require('vue-server-renderer')
@@ -59,6 +60,7 @@ const serve = (path, cache) => express.static(resolve(path), {
   maxAge: cache && isProd ? 1000 * 60 * 60 * 24 * 30 : 0
 })
 app.use(compression({ threshold: 0 }))
+app.use(cookieParser())
 app.use('/dist', serve('./dist', true))
 app.use('/public', serve('./public', true))
 app.use('/manifest.json', serve('./manifest.json', true))
@@ -86,7 +88,8 @@ function render (req, res) {
 
   const context = {
     title: 'Vue SSR Demo', // default title
-    url: req.url
+    url: req.url,
+    cookies: req.cookies
   }
   renderer.renderToString(context, (err, html) => {
     if (err) {

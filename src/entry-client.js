@@ -1,8 +1,11 @@
 import Vue from 'vue';
 import 'es6-promise/auto';
+import Cookies from 'js-cookie';
 import { createApp } from './app';
 
-const { app, router, store } = createApp();
+const { app, router, store } = createApp({
+  language: Cookies.get('language'),
+});
 
 // prime the store with server-initialized state.
 // the state is determined during SSR and inlined in the page markup.
